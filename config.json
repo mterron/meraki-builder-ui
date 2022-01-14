@@ -1,0 +1,105 @@
+{
+  "device": "MS220-8P",
+  "version": "1.2.3-beta",
+  "date": "2020-04-23T18:25:43.511Z",
+  "ports": [
+    {
+      "port_number": 1,
+      "enabled": true,
+      "link_speed": 1000,
+      "isolation": false,
+      "pvid": 1,
+      "vlans": [1, 10],
+      "tagged": true,
+      "stp": true,
+      "lacp": false,
+      "poe": {
+        "enabled": true,
+        "mode": "802.3af"
+      }
+    },
+    {
+      "port_number": 2,
+      "poe": {
+        "enabled": true,
+        "mode": "802.3af"
+      }
+    },
+    {
+      "port_number": 3,
+      "enabled": true,
+      "pvid": 10,
+      "vlans": [180],
+      "tagged": false,
+      "stp": false,
+      "lacp": true
+    },
+    {
+      "port_number": 4,
+      "enabled": false
+    },
+    {
+      "port_number": 5,
+      "enabled": false,
+      "pvid": 10,
+      "vlans": [130],
+      "tagged": false,
+      "stp": false,
+      "lacp": true
+    },
+    {
+      "port_number": 6,
+      "enabled": false,
+      "pvid": 10,
+      "vlans": [130],
+      "tagged": false,
+      "stp": false,
+      "lacp": true
+    },
+    {
+      "port_number": 7,
+      "enabled": false,
+      "pvid": 10,
+      "vlans": [130],
+      "tagged": false,
+      "stp": false,
+      "lacp": true
+    },
+    {
+      "port_number": 8,
+      "enabled": false,
+      "pvid": 10,
+      "vlans": [130],
+      "tagged": false,
+      "stp": false,
+      "lacp": true
+    },
+    {
+      "port_number": 9,
+      "enabled": true,
+      "pvid": 10,
+      "vlans": [130],
+      "tagged": false,
+      "stp": false,
+      "lacp": true
+    },
+    {
+      "port_number": 10,
+      "pvid": 10,
+      "vlans": [130],
+      "tagged": false,
+      "stp": false,
+      "lacp": true
+    }
+  ],
+  "bonds": [
+    {
+      "name": "aggr_1",
+      "members": [ 1, 3, 4 ]
+    },
+    {
+      "name": "aggr_2",
+      "members": [ 1, 2, 5 ]
+    }
+  ]
+}

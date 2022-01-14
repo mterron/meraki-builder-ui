@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="icon" type="image/svg+xml" href="img/sun3.svg">
+	<!-- <link rel="alternate icon" href="img/favicon.ico"> -->
+	<title>Switch configuration</title>
+
+	<!-- <link rel="stylesheet" href="pico.min.css"> -->
+	<link rel="stylesheet" href="https://unpkg.com/@picocss/pico@latest/css/pico.min.css">
+	
+	<link rel="stylesheet" href="custom.css">
+	<script defer src="app.js" type="text/javascript"></script>
+</head>
+<body onload="getSwitchStatus(); getConfig(); liveConfig();">
+	<header class="container">
+		<img id="logo" class="logo" src="img/sun3.svg" width="48px" />
+		<object id=switch class="centered" data="img/MS220-8.svg" type="image/svg+xml"></object>
+	</header>
+	<article class="container centered" >
+		<details open>
+			<summary>Port Configuration</summary>
+			<fieldset class="flex">
+				<!-- Switch -->
+				<div id=conf_enable class="flex flex-column flex_child centered">
+					Port
+					<h1 id=conf_port_id style="margin-bottom: 0px;">&nbsp;</h1>
+					<label for="switch">
+						<input type="checkbox" id="port_enabled" name="switch" style="margin: 0px;" role="switch" onclick="enablePort()">
+					</label>
+				</div>
+				
+				<!-- VLANS -->
+				<div id=vlan_config class="flex_child" disabled><p >VLANS</p>
+						<div>
+							<div>
+								<label for="pvid">Port VLAN ID:</label>
+							</div>
+							<div>
+								<input type="text" placeholder="1" id=pvid onclick="configClick(id)"/>
+							</div>
+						</div>
+						<div>
+							<label for="tagged">
+								<input type="checkbox" name="tagged" id=tagged onclick="configClick(id)"/>
+								Tagged port
+							</label>
+						</div>
+						<div>
+							<div>
+								<label for="vlans">VLANs:</label>
+							</div>
+							<div>
+								<input type="text" placeholder="2,7,11-123,4094" id=vlans onclick="configClick(id)"/>
+							</div>
+						</div>
+				</div>
+				
+				<!-- POE -->
+				<div id=poe_config class="flex_child" disabled><p>Power over Ethernet</p>
+					<div>
+						<label for="poe_mode">PoE Mode</label>
+						<select id=poe_mode name="poe_mode" onchange="configClick(id)">
+							<option value="POE_OFF" selected>Off</option>
+							<option value="802.3af">802.3af</option>
+							<option value="802.3at">802.3at</option>
+						</select>
+					</div>
+					<p class="text-sm">Power delivery: <span id=poe_power></span>W (advertised <span id=poe_advpower>12.8</span>W)</p>
+				</div>
+				
+				<!-- Misc -->
+				<div id=misc_config class="flex_child" disabled><p>Miscellaneous</p>
+					<div>
+						<label for="link_mode">Link</label>
+						<select id=link_mode name="link_mode" onchange="configClick(id)">
+							<option value="auto">Auto-Negotiate</option>
+							<option value="100 Full-duplex">100 Full-duplex</option>
+							<option value="100 Half-duplex">100 Half-duplex</option>
+							<option value="10 Full-duplex">10 Full-duplex</option>
+							<option value="10 Half-duplex">10 Half-duplex</option>
+						</select>
+					</div>
+					<div id=isolation_config>
+						<label for="isolation">
+						<input type="checkbox" name="port isolation" id=isolation onclick="configClick(id)"/>
+						Port Isolation</label>
+					</div>
+					<div id=stp_config>
+						<label for="stp">
+						<input type="checkbox" name="stp" id=stp onclick="configClick(id)" />
+						STP</label>
+					</div>
+					<div id=igmp_config>
+						<label for="igmp">
+						<input type="checkbox" name="igmp" id=igmp onclick="configClick(id)" />
+						IGMP Snooping</label>
+					</div>
+				</div>
+			</fieldset>
+		</details>
+	</article>
+
+	<!-- Link Aggregation -->
+	<div class="centered">
+		<details>
+			<summary>Link Aggregation</summary>
+			<div>
+				<fieldset id=lagg_config disabled><p>Some LACP stuff config goes here</p>
+					<div>
+						<div>
+							<label for="ports">Ports:</label>
+						</div>
+						<div>
+							<input id=ports type="text" placeholder="1,2,3,10" onclick="configClick(id)"/>
+						</div>
+					</div>
+				</fieldset>
+			</div>
+		</details>
+	</div>
+
+	<!-- Config File -->
+	<div class="centered">
+		<details>
+			<summary >Configuration file</summary>
+			<pre id=json style="tab-size: 2"></pre>
+		</details>
+	</div>
+</body>
+</html>
